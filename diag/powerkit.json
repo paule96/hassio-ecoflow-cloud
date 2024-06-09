@@ -1,0 +1,355 @@
+{
+    "home_assistant": {
+      "installation_type": "Home Assistant OS",
+      "version": "2024.5.3",
+      "dev": false,
+      "hassio": true,
+      "virtualenv": false,
+      "python_version": "3.12.2",
+      "docker": true,
+      "arch": "aarch64",
+      "timezone": "Europe/Berlin",
+      "os_name": "Linux",
+      "os_version": "6.6.28-haos-raspi",
+      "supervisor": "2024.05.1",
+      "host_os": "Home Assistant OS 12.3",
+      "docker_version": "25.0.5",
+      "chassis": "embedded",
+      "run_as_root": true
+    },
+    "custom_components": {
+      "hacs": {
+        "documentation": "https://hacs.xyz/docs/configuration/start",
+        "version": "1.34.0",
+        "requirements": [
+          "aiogithubapi>=22.10.1"
+        ]
+      },
+      "ecoflow_cloud": {
+        "documentation": "https://github.com/tolwi/hassio-ecoflow-cloud",
+        "version": "0.13.2",
+        "requirements": [
+          "paho-mqtt==1.6.1",
+          "reactivex==4.0.4",
+          "protobuf>=4.23.0"
+        ]
+      }
+    },
+    "integration_manifest": {
+      "domain": "ecoflow_cloud",
+      "name": "Ecoflow-Cloud",
+      "codeowners": [
+        "@tolwi"
+      ],
+      "config_flow": true,
+      "documentation": "https://github.com/tolwi/hassio-ecoflow-cloud",
+      "iot_class": "cloud_push",
+      "issue_tracker": "https://github.com/tolwi/hassio-ecoflow-cloud/issues",
+      "requirements": [
+        "paho-mqtt==1.6.1",
+        "reactivex==4.0.4",
+        "protobuf>=4.23.0"
+      ],
+      "version": "0.13.2",
+      "is_built_in": false
+    },
+    "data": {
+      "device": "DIAGNOSTIC",
+      "params": {
+        "bbcin": "{\"M1093-DCIN-C7A23\":{\"l2Curr\":17,\"batVol\":52061,\"l1Curr\":0}}",
+        "bbcout": "{\"M1093-DCOU-59743\":{\"ldOutCurr\":1574,\"l2Curr\":423,\"l1Curr\":423,\"batCurr\":443,\"batWatts\":23,\"ldOutVol\":26408}}",
+        "bp5000": "{\"M101Z3B4ZE6Q0456\":{\"vol\":52964,\"maxCellVol\":3317,\"amp\":5138,\"minCellVol\":3307,\"remainTime\":863,\"remainCap\":20305,\"inWatts\":272}}",
+        "ichigh": "{\"M1095-PSDH-47113\":{\"inVol\":234578,\"outVol\":234658,\"outVa\":362,\"inCurr\":3574,\"outCurr\":2031,\"outWatts\":307,\"inWatts\":678}}",
+        "iclow": "{\"M1095-PSDL-440E3\":{\"bmsChgCurr\":6125,\"busVol\":449989,\"batCurr\":7877,\"chgBatVol\":52997}}",
+        "kitscc": "{\"M1096-MPPT-40633\":{\"pv2InCurr\":842,\"l2Curr\":785,\"batVol\":52985,\"batCurr\":531,\"batWatts\":28213,\"pv2InVol\":33464}}",
+        "ldac": "{\"M10EZEB4ZE7D0020\":{\"acChWatt\":[267,0,0,0,0,0],\"acChCur\":[1326,0,0,0,0,0],\"acInVol\":234189,\"acTotalWatts\":275}}",
+        "lddc": "{\"M10E1-LDDC-858E3\":{\"dcChCur\":[1565,0,0,0,0,0,0,0,0,0,0,383],\"dcTotalWatts\":51,\"dcInVol\":26682,\"dcChWatt\":[41,0,0,0,0,0,0,0,0,0,0,10]}}",
+        "onLineModuleSnList": "[{\"customData\":\"0\",\"loaderVersion\":\"1.1.2.2\",\"moduleAddr\":\"4\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"6\",\"moduleSn\":\"M1095-PSDH-47113\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.4.212\"},{\"customData\":\"0\",\"loaderVersion\":\"1.0.2.2\",\"moduleAddr\":\"5\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"4\",\"moduleSn\":\"M1096-MPPT-40633\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.163\"},{\"customData\":\"0\",\"loaderVersion\":\"3.0.2.2\",\"moduleAddr\":\"83\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"7\",\"moduleSn\":\"M10EZEB4ZE7D0020\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.52\"},{\"customData\":\"1\",\"loaderVersion\":\"1.0.1.15\",\"moduleAddr\":\"3\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"1\",\"moduleSn\":\"M101Z3B4ZE6Q0456\",\"moduleType\":\"60\",\"moduleVersion\":\"1.1.2.68\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"81\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"3\",\"moduleSn\":\"M1093-DCOU-59743\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.1.79\"},{\"customData\":\"0\",\"loaderVersion\":\"1.2.2.2\",\"moduleAddr\":\"2\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"5\",\"moduleSn\":\"M1095-PSDL-440E3\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.5.153\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"80\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"2\",\"moduleSn\":\"M1093-DCIN-C7A23\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.199\"},{\"customData\":\"0\",\"loaderVersion\":\"4.0.2.2\",\"moduleAddr\":\"84\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"8\",\"moduleSn\":\"M10E1-LDDC-858E3\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.51\"}]",
+        "timestamp": 1715505443,
+        "wireless": "{\"M109ZEB4ZE7B0128\":{\"scenes\":4}}"
+      },
+      "set": [],
+      "set_reply": [],
+      "get": [],
+      "get_reply": [],
+      "raw_data": [
+        {
+          "addr": 0,
+          "cmdFunc": 0,
+          "cmdId": 0,
+          "id": 1724596384433832765,
+          "version": "1.0",
+          "timestamp": 1715505443,
+          "moduleSn": "M1093-DCOU-59743",
+          "moduleType": "bbcout",
+          "operateType": "heartBeat",
+          "params": {
+            "bbcout": "{\"M1093-DCOU-59743\":{\"ldOutCurr\":1574,\"l2Curr\":423,\"l1Curr\":423,\"batCurr\":443,\"batWatts\":23,\"ldOutVol\":26408}}",
+            "onLineModuleSnList": "[{\"customData\":\"0\",\"loaderVersion\":\"1.1.2.2\",\"moduleAddr\":\"4\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"6\",\"moduleSn\":\"M1095-PSDH-47113\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.4.212\"},{\"customData\":\"0\",\"loaderVersion\":\"1.0.2.2\",\"moduleAddr\":\"5\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"4\",\"moduleSn\":\"M1096-MPPT-40633\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.163\"},{\"customData\":\"0\",\"loaderVersion\":\"3.0.2.2\",\"moduleAddr\":\"83\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"7\",\"moduleSn\":\"M10EZEB4ZE7D0020\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.52\"},{\"customData\":\"1\",\"loaderVersion\":\"1.0.1.15\",\"moduleAddr\":\"3\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"1\",\"moduleSn\":\"M101Z3B4ZE6Q0456\",\"moduleType\":\"60\",\"moduleVersion\":\"1.1.2.68\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"81\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"3\",\"moduleSn\":\"M1093-DCOU-59743\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.1.79\"},{\"customData\":\"0\",\"loaderVersion\":\"1.2.2.2\",\"moduleAddr\":\"2\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"5\",\"moduleSn\":\"M1095-PSDL-440E3\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.5.153\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"80\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"2\",\"moduleSn\":\"M1093-DCIN-C7A23\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.199\"},{\"customData\":\"0\",\"loaderVersion\":\"4.0.2.2\",\"moduleAddr\":\"84\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"8\",\"moduleSn\":\"M10E1-LDDC-858E3\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.51\"}]"
+          }
+        },
+        {
+          "addr": 0,
+          "cmdFunc": 0,
+          "cmdId": 0,
+          "id": 1724596376108139918,
+          "version": "1.0",
+          "timestamp": 1715505442,
+          "moduleSn": "M101Z3B4ZE6Q0456",
+          "moduleType": "bp5000",
+          "operateType": "heartBeat",
+          "params": {
+            "bp5000": "{\"M101Z3B4ZE6Q0456\":{\"vol\":52964,\"maxCellVol\":3317,\"amp\":5138,\"minCellVol\":3307,\"remainTime\":863,\"remainCap\":20305,\"inWatts\":272}}"
+          }
+        },
+        {
+          "addr": 0,
+          "cmdFunc": 0,
+          "cmdId": 0,
+          "id": 1724596367518205428,
+          "version": "1.0",
+          "timestamp": 1715505441,
+          "moduleSn": "M1095-PSDH-47113",
+          "moduleType": "ichigh",
+          "operateType": "heartBeat",
+          "params": {
+            "ichigh": "{\"M1095-PSDH-47113\":{\"inVol\":234578,\"outVol\":234658,\"outVa\":362,\"inCurr\":3574,\"outCurr\":2031,\"outWatts\":307,\"inWatts\":678}}"
+          }
+        },
+        {
+          "addr": 0,
+          "cmdFunc": 0,
+          "cmdId": 0,
+          "id": 1724596367518204797,
+          "version": "1.0",
+          "timestamp": 1715505441,
+          "moduleSn": "M1093-DCOU-59743",
+          "moduleType": "bbcout",
+          "operateType": "heartBeat",
+          "params": {
+            "bbcout": "{\"M1093-DCOU-59743\":{\"ldOutCurr\":1556,\"ldOutWatts\":41,\"batVol\":52529,\"l1Curr\":342,\"batCurr\":382,\"batWatts\":20,\"ldOutVol\":26375}}",
+            "onLineModuleSnList": "[{\"customData\":\"0\",\"loaderVersion\":\"1.1.2.2\",\"moduleAddr\":\"4\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"6\",\"moduleSn\":\"M1095-PSDH-47113\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.4.212\"},{\"customData\":\"0\",\"loaderVersion\":\"1.0.2.2\",\"moduleAddr\":\"5\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"4\",\"moduleSn\":\"M1096-MPPT-40633\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.163\"},{\"customData\":\"0\",\"loaderVersion\":\"3.0.2.2\",\"moduleAddr\":\"83\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"7\",\"moduleSn\":\"M10EZEB4ZE7D0020\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.52\"},{\"customData\":\"1\",\"loaderVersion\":\"1.0.1.15\",\"moduleAddr\":\"3\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"1\",\"moduleSn\":\"M101Z3B4ZE6Q0456\",\"moduleType\":\"60\",\"moduleVersion\":\"1.1.2.68\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"81\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"3\",\"moduleSn\":\"M1093-DCOU-59743\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.1.79\"},{\"customData\":\"0\",\"loaderVersion\":\"1.2.2.2\",\"moduleAddr\":\"2\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"5\",\"moduleSn\":\"M1095-PSDL-440E3\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.5.153\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"80\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"2\",\"moduleSn\":\"M1093-DCIN-C7A23\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.199\"},{\"customData\":\"0\",\"loaderVersion\":\"4.0.2.2\",\"moduleAddr\":\"84\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"8\",\"moduleSn\":\"M10E1-LDDC-858E3\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.51\"}]"
+          }
+        },
+        {
+          "addr": 0,
+          "cmdFunc": 0,
+          "cmdId": 0,
+          "id": 1724596358664029064,
+          "version": "1.0",
+          "timestamp": 1715505440,
+          "moduleSn": "M1096-MPPT-40633",
+          "moduleType": "kitscc",
+          "operateType": "heartBeat",
+          "params": {
+            "kitscc": "{\"M1096-MPPT-40633\":{\"pv2InCurr\":842,\"l2Curr\":785,\"batVol\":52985,\"batCurr\":531,\"batWatts\":28213,\"pv2InVol\":33464}}"
+          }
+        },
+        {
+          "addr": 0,
+          "cmdFunc": 0,
+          "cmdId": 0,
+          "id": 1724596359131169325,
+          "version": "1.0",
+          "timestamp": 1715505440,
+          "moduleSn": "M1095-PSDL-440E3",
+          "moduleType": "iclow",
+          "operateType": "heartBeat",
+          "params": {
+            "iclow": "{\"M1095-PSDL-440E3\":{\"bmsChgCurr\":6125,\"busVol\":449989,\"batCurr\":7877,\"chgBatVol\":52997}}"
+          }
+        },
+        {
+          "addr": 0,
+          "cmdFunc": 0,
+          "cmdId": 0,
+          "id": 1724596352239534284,
+          "version": "1.0",
+          "timestamp": 1715505439,
+          "moduleSn": "M1095-PSDH-47113",
+          "moduleType": "15366",
+          "operateType": "wattPush",
+          "params": {
+            "onLineModuleSnList": "[{\"customData\":\"0\",\"loaderVersion\":\"1.1.2.2\",\"moduleAddr\":\"4\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"6\",\"moduleSn\":\"M1095-PSDH-47113\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.4.212\"},{\"customData\":\"0\",\"loaderVersion\":\"1.0.2.2\",\"moduleAddr\":\"5\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"4\",\"moduleSn\":\"M1096-MPPT-40633\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.163\"},{\"customData\":\"0\",\"loaderVersion\":\"3.0.2.2\",\"moduleAddr\":\"83\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"7\",\"moduleSn\":\"M10EZEB4ZE7D0020\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.52\"},{\"customData\":\"1\",\"loaderVersion\":\"1.0.1.15\",\"moduleAddr\":\"3\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"1\",\"moduleSn\":\"M101Z3B4ZE6Q0456\",\"moduleType\":\"60\",\"moduleVersion\":\"1.1.2.68\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"81\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"3\",\"moduleSn\":\"M1093-DCOU-59743\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.1.79\"},{\"customData\":\"0\",\"loaderVersion\":\"1.2.2.2\",\"moduleAddr\":\"2\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"5\",\"moduleSn\":\"M1095-PSDL-440E3\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.5.153\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"80\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"2\",\"moduleSn\":\"M1093-DCIN-C7A23\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.199\"},{\"customData\":\"0\",\"loaderVersion\":\"4.0.2.2\",\"moduleAddr\":\"84\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"8\",\"moduleSn\":\"M10E1-LDDC-858E3\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.51\"}]",
+            "ichigh": "{\"M1095-PSDH-47113\":{\"wattItem\":{\"rtc\":1715472000,\"wattType\":64,\"watt\":[0,0,0,0,0,0,0,0,142,106,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},\"seq\":18}}"
+          }
+        },
+        {
+          "addr": 0,
+          "cmdFunc": 0,
+          "cmdId": 0,
+          "id": 1724596350541235069,
+          "version": "1.0",
+          "timestamp": 1715505439,
+          "moduleSn": "M1093-DCOU-59743",
+          "moduleType": "bbcout",
+          "operateType": "heartBeat",
+          "params": {
+            "bbcout": "{\"M1093-DCOU-59743\":{\"ldOutCurr\":1721,\"ldOutWatts\":45,\"l2Curr\":382,\"batVol\":52546,\"l1Curr\":382,\"batCurr\":403,\"batWatts\":21,\"ldOutVol\":26408}}",
+            "onLineModuleSnList": "[{\"customData\":\"0\",\"loaderVersion\":\"1.1.2.2\",\"moduleAddr\":\"4\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"6\",\"moduleSn\":\"M1095-PSDH-47113\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.4.212\"},{\"customData\":\"0\",\"loaderVersion\":\"1.0.2.2\",\"moduleAddr\":\"5\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"4\",\"moduleSn\":\"M1096-MPPT-40633\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.163\"},{\"customData\":\"0\",\"loaderVersion\":\"3.0.2.2\",\"moduleAddr\":\"83\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"7\",\"moduleSn\":\"M10EZEB4ZE7D0020\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.52\"},{\"customData\":\"1\",\"loaderVersion\":\"1.0.1.15\",\"moduleAddr\":\"3\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"1\",\"moduleSn\":\"M101Z3B4ZE6Q0456\",\"moduleType\":\"60\",\"moduleVersion\":\"1.1.2.68\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"81\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"3\",\"moduleSn\":\"M1093-DCOU-59743\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.1.79\"},{\"customData\":\"0\",\"loaderVersion\":\"1.2.2.2\",\"moduleAddr\":\"2\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"5\",\"moduleSn\":\"M1095-PSDL-440E3\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.5.153\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"80\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"2\",\"moduleSn\":\"M1093-DCIN-C7A23\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.199\"},{\"customData\":\"0\",\"loaderVersion\":\"4.0.2.2\",\"moduleAddr\":\"84\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"8\",\"moduleSn\":\"M10E1-LDDC-858E3\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.51\"}]"
+          }
+        },
+        {
+          "addr": 0,
+          "cmdFunc": 0,
+          "cmdId": 0,
+          "id": 1724596341484160134,
+          "version": "1.0",
+          "timestamp": 1715505438,
+          "moduleSn": "M10EZEB4ZE7D0020",
+          "moduleType": "ldac",
+          "operateType": "heartBeat",
+          "params": {
+            "ldac": "{\"M10EZEB4ZE7D0020\":{\"acChWatt\":[267,0,0,0,0,0],\"acChCur\":[1326,0,0,0,0,0],\"acInVol\":234189,\"acTotalWatts\":275}}",
+            "onLineModuleSnList": "[{\"customData\":\"0\",\"loaderVersion\":\"1.1.2.2\",\"moduleAddr\":\"4\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"6\",\"moduleSn\":\"M1095-PSDH-47113\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.4.212\"},{\"customData\":\"0\",\"loaderVersion\":\"1.0.2.2\",\"moduleAddr\":\"5\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"4\",\"moduleSn\":\"M1096-MPPT-40633\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.163\"},{\"customData\":\"0\",\"loaderVersion\":\"3.0.2.2\",\"moduleAddr\":\"83\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"7\",\"moduleSn\":\"M10EZEB4ZE7D0020\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.52\"},{\"customData\":\"1\",\"loaderVersion\":\"1.0.1.15\",\"moduleAddr\":\"3\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"1\",\"moduleSn\":\"M101Z3B4ZE6Q0456\",\"moduleType\":\"60\",\"moduleVersion\":\"1.1.2.68\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"81\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"3\",\"moduleSn\":\"M1093-DCOU-59743\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.1.79\"},{\"customData\":\"0\",\"loaderVersion\":\"1.2.2.2\",\"moduleAddr\":\"2\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"5\",\"moduleSn\":\"M1095-PSDL-440E3\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.5.153\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"80\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"2\",\"moduleSn\":\"M1093-DCIN-C7A23\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.199\"},{\"customData\":\"0\",\"loaderVersion\":\"4.0.2.2\",\"moduleAddr\":\"84\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"8\",\"moduleSn\":\"M10E1-LDDC-858E3\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.51\"}]"
+          }
+        },
+        {
+          "addr": 0,
+          "cmdFunc": 0,
+          "cmdId": 0,
+          "id": 1724596342585951191,
+          "version": "1.0",
+          "timestamp": 1715505438,
+          "moduleSn": "M1095-PSDH-47113",
+          "moduleType": "ichigh",
+          "operateType": "heartBeat",
+          "params": {
+            "ichigh": "{\"M1095-PSDH-47113\":{\"inVol\":233887,\"outVol\":233956,\"outVa\":363,\"inCurr\":3599,\"outCurr\":2036,\"ch2Watt\":1,\"outWatts\":305,\"inWatts\":679}}"
+          }
+        },
+        {
+          "addr": 0,
+          "cmdFunc": 0,
+          "cmdId": 0,
+          "id": 1724596333361365932,
+          "version": "1.0",
+          "timestamp": 1715505437,
+          "moduleSn": "M1093-DCOU-59743",
+          "moduleType": "bbcout",
+          "operateType": "heartBeat",
+          "params": {
+            "bbcout": "{\"M1093-DCOU-59743\":{\"ldOutCurr\":1464,\"ldOutWatts\":38,\"l2Curr\":302,\"batVol\":52529,\"batCurr\":338,\"batWatts\":17,\"ldOutVol\":26375}}"
+          }
+        },
+        {
+          "addr": 0,
+          "cmdFunc": 0,
+          "cmdId": 0,
+          "id": 1724596325406082499,
+          "version": "1.0",
+          "timestamp": 1715505436,
+          "moduleSn": "M10E1-LDDC-858E3",
+          "moduleType": "lddc",
+          "operateType": "heartBeat",
+          "params": {
+            "lddc": "{\"M10E1-LDDC-858E3\":{\"dcChCur\":[1565,0,0,0,0,0,0,0,0,0,0,383],\"dcTotalWatts\":51,\"dcInVol\":26682,\"dcChWatt\":[41,0,0,0,0,0,0,0,0,0,0,10]}}"
+          }
+        },
+        {
+          "addr": 0,
+          "cmdFunc": 0,
+          "cmdId": 0,
+          "id": 1724596325406082103,
+          "version": "1.0",
+          "timestamp": 1715505436,
+          "moduleSn": "M1093-DCIN-C7A23",
+          "moduleType": "bbcin",
+          "operateType": "heartBeat",
+          "params": {
+            "onLineModuleSnList": "[{\"customData\":\"0\",\"loaderVersion\":\"1.1.2.2\",\"moduleAddr\":\"4\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"6\",\"moduleSn\":\"M1095-PSDH-47113\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.4.212\"},{\"customData\":\"0\",\"loaderVersion\":\"1.0.2.2\",\"moduleAddr\":\"5\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"4\",\"moduleSn\":\"M1096-MPPT-40633\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.163\"},{\"customData\":\"0\",\"loaderVersion\":\"3.0.2.2\",\"moduleAddr\":\"83\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"7\",\"moduleSn\":\"M10EZEB4ZE7D0020\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.52\"},{\"customData\":\"1\",\"loaderVersion\":\"1.0.1.15\",\"moduleAddr\":\"3\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"1\",\"moduleSn\":\"M101Z3B4ZE6Q0456\",\"moduleType\":\"60\",\"moduleVersion\":\"1.1.2.68\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"81\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"3\",\"moduleSn\":\"M1093-DCOU-59743\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.1.79\"},{\"customData\":\"0\",\"loaderVersion\":\"1.2.2.2\",\"moduleAddr\":\"2\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"5\",\"moduleSn\":\"M1095-PSDL-440E3\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.5.153\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"80\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"2\",\"moduleSn\":\"M1093-DCIN-C7A23\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.199\"},{\"customData\":\"0\",\"loaderVersion\":\"4.0.2.2\",\"moduleAddr\":\"84\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"8\",\"moduleSn\":\"M10E1-LDDC-858E3\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.51\"}]",
+            "bbcin": "{\"M1093-DCIN-C7A23\":{\"l2Curr\":17,\"batVol\":52061,\"l1Curr\":0}}"
+          }
+        },
+        {
+          "addr": 0,
+          "cmdFunc": 0,
+          "cmdId": 0,
+          "id": 1724596316181496831,
+          "version": "1.0",
+          "timestamp": 1715505435,
+          "moduleSn": "M101Z3B4ZE6Q0456",
+          "moduleType": "bp5000",
+          "operateType": "mainBP",
+          "params": {
+            "bp5000": "{\"M101Z3B4ZE6Q0456\":{\"totalInWatts\":272,\"totalAmp\":52,\"totalRemainTime\":853}}",
+            "onLineModuleSnList": "[{\"customData\":\"0\",\"loaderVersion\":\"1.1.2.2\",\"moduleAddr\":\"4\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"6\",\"moduleSn\":\"M1095-PSDH-47113\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.4.212\"},{\"customData\":\"0\",\"loaderVersion\":\"1.0.2.2\",\"moduleAddr\":\"5\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"4\",\"moduleSn\":\"M1096-MPPT-40633\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.163\"},{\"customData\":\"0\",\"loaderVersion\":\"3.0.2.2\",\"moduleAddr\":\"83\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"7\",\"moduleSn\":\"M10EZEB4ZE7D0020\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.52\"},{\"customData\":\"1\",\"loaderVersion\":\"1.0.1.15\",\"moduleAddr\":\"3\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"1\",\"moduleSn\":\"M101Z3B4ZE6Q0456\",\"moduleType\":\"60\",\"moduleVersion\":\"1.1.2.68\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"81\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"3\",\"moduleSn\":\"M1093-DCOU-59743\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.1.79\"},{\"customData\":\"0\",\"loaderVersion\":\"1.2.2.2\",\"moduleAddr\":\"2\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"5\",\"moduleSn\":\"M1095-PSDL-440E3\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.5.153\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"80\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"2\",\"moduleSn\":\"M1093-DCIN-C7A23\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.199\"},{\"customData\":\"0\",\"loaderVersion\":\"4.0.2.2\",\"moduleAddr\":\"84\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"8\",\"moduleSn\":\"M10E1-LDDC-858E3\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.51\"}]"
+          }
+        },
+        {
+          "addr": 0,
+          "cmdFunc": 0,
+          "cmdId": 0,
+          "id": 1724596315714356160,
+          "version": "1.0",
+          "timestamp": 1715505435,
+          "moduleSn": "M1093-DCOU-59743",
+          "moduleType": "bbcout",
+          "operateType": "heartBeat",
+          "params": {
+            "bbcout": "{\"M1093-DCOU-59743\":{\"ldOutCurr\":1849,\"ldOutWatts\":48,\"l2Curr\":342,\"batVol\":52546,\"l1Curr\":342,\"batCurr\":360,\"batWatts\":18,\"ldOutVol\":26425}}",
+            "onLineModuleSnList": "[{\"customData\":\"0\",\"loaderVersion\":\"1.1.2.2\",\"moduleAddr\":\"4\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"6\",\"moduleSn\":\"M1095-PSDH-47113\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.4.212\"},{\"customData\":\"0\",\"loaderVersion\":\"1.0.2.2\",\"moduleAddr\":\"5\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"4\",\"moduleSn\":\"M1096-MPPT-40633\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.163\"},{\"customData\":\"0\",\"loaderVersion\":\"3.0.2.2\",\"moduleAddr\":\"83\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"7\",\"moduleSn\":\"M10EZEB4ZE7D0020\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.52\"},{\"customData\":\"1\",\"loaderVersion\":\"1.0.1.15\",\"moduleAddr\":\"3\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"1\",\"moduleSn\":\"M101Z3B4ZE6Q0456\",\"moduleType\":\"60\",\"moduleVersion\":\"1.1.2.68\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"81\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"3\",\"moduleSn\":\"M1093-DCOU-59743\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.1.79\"},{\"customData\":\"0\",\"loaderVersion\":\"1.2.2.2\",\"moduleAddr\":\"2\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"5\",\"moduleSn\":\"M1095-PSDL-440E3\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.5.153\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"80\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"2\",\"moduleSn\":\"M1093-DCIN-C7A23\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.199\"},{\"customData\":\"0\",\"loaderVersion\":\"4.0.2.2\",\"moduleAddr\":\"84\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"8\",\"moduleSn\":\"M10E1-LDDC-858E3\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.51\"}]"
+          }
+        },
+        {
+          "addr": 0,
+          "cmdFunc": 0,
+          "cmdId": 0,
+          "id": 1724596317879795814,
+          "version": "1.0",
+          "timestamp": 1715505435,
+          "moduleSn": "M1093-DCIN-C7A23",
+          "moduleType": "15362",
+          "operateType": "wattPush",
+          "params": {
+            "onLineModuleSnList": "[{\"customData\":\"0\",\"loaderVersion\":\"1.1.2.2\",\"moduleAddr\":\"4\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"6\",\"moduleSn\":\"M1095-PSDH-47113\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.4.212\"},{\"customData\":\"0\",\"loaderVersion\":\"1.0.2.2\",\"moduleAddr\":\"5\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"4\",\"moduleSn\":\"M1096-MPPT-40633\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.163\"},{\"customData\":\"0\",\"loaderVersion\":\"3.0.2.2\",\"moduleAddr\":\"83\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"7\",\"moduleSn\":\"M10EZEB4ZE7D0020\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.52\"},{\"customData\":\"1\",\"loaderVersion\":\"1.0.1.15\",\"moduleAddr\":\"3\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"1\",\"moduleSn\":\"M101Z3B4ZE6Q0456\",\"moduleType\":\"60\",\"moduleVersion\":\"1.1.2.68\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"81\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"3\",\"moduleSn\":\"M1093-DCOU-59743\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.1.79\"},{\"customData\":\"0\",\"loaderVersion\":\"1.2.2.2\",\"moduleAddr\":\"2\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"5\",\"moduleSn\":\"M1095-PSDL-440E3\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.5.153\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"80\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"2\",\"moduleSn\":\"M1093-DCIN-C7A23\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.199\"},{\"customData\":\"0\",\"loaderVersion\":\"4.0.2.2\",\"moduleAddr\":\"84\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"8\",\"moduleSn\":\"M10E1-LDDC-858E3\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.51\"}]",
+            "bbcin": "{\"M1093-DCIN-C7A23\":{\"wattItem\":{\"rtc\":1715472000,\"wattType\":0,\"watt\":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},\"seq\":41}}"
+          }
+        },
+        {
+          "addr": 0,
+          "cmdFunc": 0,
+          "cmdId": 0,
+          "id": 1724596315978597054,
+          "version": "1.0",
+          "timestamp": 1715505435,
+          "moduleSn": "M1095-PSDH-47113",
+          "moduleType": "ichigh",
+          "operateType": "heartBeat",
+          "params": {
+            "onLineModuleSnList": "[{\"customData\":\"0\",\"loaderVersion\":\"1.1.2.2\",\"moduleAddr\":\"4\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"6\",\"moduleSn\":\"M1095-PSDH-47113\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.4.212\"},{\"customData\":\"0\",\"loaderVersion\":\"1.0.2.2\",\"moduleAddr\":\"5\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"4\",\"moduleSn\":\"M1096-MPPT-40633\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.163\"},{\"customData\":\"0\",\"loaderVersion\":\"3.0.2.2\",\"moduleAddr\":\"83\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"7\",\"moduleSn\":\"M10EZEB4ZE7D0020\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.52\"},{\"customData\":\"1\",\"loaderVersion\":\"1.0.1.15\",\"moduleAddr\":\"3\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"1\",\"moduleSn\":\"M101Z3B4ZE6Q0456\",\"moduleType\":\"60\",\"moduleVersion\":\"1.1.2.68\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"81\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"3\",\"moduleSn\":\"M1093-DCOU-59743\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.1.79\"},{\"customData\":\"0\",\"loaderVersion\":\"1.2.2.2\",\"moduleAddr\":\"2\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"5\",\"moduleSn\":\"M1095-PSDL-440E3\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.5.153\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"80\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"2\",\"moduleSn\":\"M1093-DCIN-C7A23\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.199\"},{\"customData\":\"0\",\"loaderVersion\":\"4.0.2.2\",\"moduleAddr\":\"84\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"8\",\"moduleSn\":\"M10E1-LDDC-858E3\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.51\"}]",
+            "ichigh": "{\"M1095-PSDH-47113\":{\"inVol\":234235,\"outVol\":234356,\"outVa\":368,\"inCurr\":3615,\"outCurr\":2024,\"outWatts\":303,\"inWatts\":676}}"
+          }
+        },
+        {
+          "addr": 0,
+          "cmdFunc": 0,
+          "cmdId": 0,
+          "id": 1724596299636278157,
+          "version": "1.0",
+          "timestamp": 1715505433,
+          "moduleSn": "M1093-DCOU-59743",
+          "moduleType": "bbcout",
+          "operateType": "heartBeat",
+          "params": {
+            "bbcout": "{\"M1093-DCOU-59743\":{\"ldOutCurr\":1519,\"ldOutWatts\":40,\"l2Curr\":261,\"l1Curr\":302,\"batCurr\":295,\"batWatts\":15}}"
+          }
+        },
+        {
+          "addr": 0,
+          "cmdFunc": 0,
+          "cmdId": 0,
+          "id": 1724596291046343418,
+          "version": "1.0",
+          "timestamp": 1715505432,
+          "moduleSn": "M101Z3B4ZE6Q0456",
+          "moduleType": "bp5000",
+          "operateType": "heartBeat",
+          "params": {
+            "bp5000": "{\"M101Z3B4ZE6Q0456\":{\"kitNum\":1,\"oilCloseSoc\":80,\"chgDsgMosState\":3,\"amp\":5235,\"fullCap\":94894,\"soc\":21,\"ptcHeatingEvent\":6,\"minCellVol\":3306,\"upsFlag\":0,\"cycles\":10,\"warnCode\":0,\"ptcRemainTime\":0,\"vol\":52961,\"openBmsIdex\":1,\"ptcHeatingFlag\":0,\"minCellTemp\":20,\"ptcChgErrCnt\":0,\"remainCap\":20287,\"inWatts\":282,\"proChgDsgMosState\":3,\"temp\":20,\"maxMosTemp\":20,\"chgState\":2,\"remainTime\":865,\"canId\":1,\"maxCellTemp\":21,\"ptcMosErr\":0,\"minMosTemp\":20,\"ptcAllowFlag\":0,\"lcdStandbyMin\":300,\"maxPtcTemp\":21,\"eventCode\":50500,\"maxCellVol\":3318,\"errCode\":50000,\"dsgSetSoc\":0,\"ptcTouchFlag\":0,\"minPtcTemp\":20,\"balanceFlag\":0,\"bmsFault\":0,\"bmsType\":0,\"chgSetSoc\":100,\"oilOpenSoc\":20,\"designCap\":100000,\"outWatts\":0}}",
+            "onLineModuleSnList": "[{\"customData\":\"0\",\"loaderVersion\":\"1.1.2.2\",\"moduleAddr\":\"4\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"6\",\"moduleSn\":\"M1095-PSDH-47113\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.4.212\"},{\"customData\":\"0\",\"loaderVersion\":\"1.0.2.2\",\"moduleAddr\":\"5\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"4\",\"moduleSn\":\"M1096-MPPT-40633\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.163\"},{\"customData\":\"0\",\"loaderVersion\":\"3.0.2.2\",\"moduleAddr\":\"83\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"7\",\"moduleSn\":\"M10EZEB4ZE7D0020\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.52\"},{\"customData\":\"1\",\"loaderVersion\":\"1.0.1.15\",\"moduleAddr\":\"3\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"1\",\"moduleSn\":\"M101Z3B4ZE6Q0456\",\"moduleType\":\"60\",\"moduleVersion\":\"1.1.2.68\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"81\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"3\",\"moduleSn\":\"M1093-DCOU-59743\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.1.79\"},{\"customData\":\"0\",\"loaderVersion\":\"1.2.2.2\",\"moduleAddr\":\"2\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"5\",\"moduleSn\":\"M1095-PSDL-440E3\",\"moduleType\":\"60\",\"moduleVersion\":\"5.3.5.153\"},{\"customData\":\"0\",\"loaderVersion\":\"2.0.2.1\",\"moduleAddr\":\"80\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"2\",\"moduleSn\":\"M1093-DCIN-C7A23\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.199\"},{\"customData\":\"0\",\"loaderVersion\":\"4.0.2.2\",\"moduleAddr\":\"84\",\"moduleDAddr\":\"1\",\"moduleDetail\":\"8\",\"moduleSn\":\"M10E1-LDDC-858E3\",\"moduleType\":\"60\",\"moduleVersion\":\"0.3.0.51\"}]"
+          }
+        }
+      ]
+    }
+  }
