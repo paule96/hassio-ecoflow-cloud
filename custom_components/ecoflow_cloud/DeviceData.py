@@ -1,4 +1,4 @@
-from custom_components.ecoflow_cloud.DeviceOptions import (
+from .DeviceOptions import (
     DeviceOptions,
     DeviceOptionsImport,
 )
