@@ -17,7 +17,7 @@ from custom_components.ecoflow_cloud.DeviceOptions import DeviceOptions
 _LOGGER = logging.getLogger(__name__)
 
 ECOFLOW_DOMAIN = "ecoflow_cloud"
-CONFIG_VERSION = 8
+CONFIG_VERSION = 10
 
 _PLATFORMS = {
     Platform.NUMBER,
@@ -53,6 +53,7 @@ CONF_SELECT_DEVICE_KEY: Final = "select_device"
 
 CONF_DEVICE_TYPE: Final = "device_type"
 CONF_DEVICE_NAME: Final = "device_name"
+CONF_DEVICE_DISPLAY_NAME: Final = "display_name"
 CONF_DEVICE_ID: Final = "device_id"
 CONF_PARENT_SN: Final = "parent_sn"
 OPTS_DIAGNOSTIC_MODE: Final = "diagnostic_mode"
@@ -104,6 +105,83 @@ async def async_migrate_entry(hass: HomeAssistant, config_entry: ConfigEntry):
 
         updated = hass.config_entries.async_update_entry(
             config_entry, version=8, data=new_data
+        )
+        _LOGGER.info("Config entries updated to version %d", config_entry.version)
+
+    if config_entry.version == 8:
+        new_data = dict(config_entry.data)
+        updated = hass.config_entries.async_update_entry(
+            config_entry, version=10, data=new_data
+        )
+
+    if config_entry.version == 9:
+        new_data = dict(config_entry.data)
+        new_options = dict(config_entry.options)
+        new_devices = dict[str, DeviceData]()
+        for sn, device_info in config_entry.data[CONF_DEVICE_LIST].items():
+            parent: DeviceData | None = None
+            if "parent" in device_info:
+                parent = DeviceData(
+                    device_info["parent"]["sn"],
+                    device_info["parent"]["name"],
+                    device_info["parent"][CONF_DEVICE_TYPE],
+                    DeviceOptions(
+                        config_entry.options[CONF_DEVICE_LIST][
+                            device_info["parent"]["sn"]
+                        ][OPTS_REFRESH_PERIOD_SEC],
+                        config_entry.options[CONF_DEVICE_LIST][
+                            device_info["parent"]["sn"]
+                        ][OPTS_POWER_STEP],
+                        config_entry.options[CONF_DEVICE_LIST][
+                            device_info["parent"]["sn"]
+                        ][OPTS_DIAGNOSTIC_MODE],
+                    ),
+                    device_info["parent"][CONF_DEVICE_DISPLAY_NAME],
+                )
+            if parent is not None:
+                new_devices[sn] = ChildDeviceData(
+                    sn,
+                    device_info[CONF_DEVICE_NAME],
+                    device_info[CONF_DEVICE_TYPE],
+                    DeviceOptions(
+                        config_entry.options[CONF_DEVICE_LIST][sn][
+                            OPTS_REFRESH_PERIOD_SEC
+                        ],
+                        config_entry.options[CONF_DEVICE_LIST][sn][OPTS_POWER_STEP],
+                        config_entry.options[CONF_DEVICE_LIST][sn][
+                            OPTS_DIAGNOSTIC_MODE
+                        ],
+                    ),
+                    device_info[CONF_DEVICE_DISPLAY_NAME],
+                    parent,
+                )
+            else:
+                new_devices[sn] = DeviceData(
+                    sn,
+                    device_info[CONF_DEVICE_NAME],
+                    device_info[CONF_DEVICE_TYPE],
+                    DeviceOptions(
+                        config_entry.options[CONF_DEVICE_LIST][sn][
+                            OPTS_REFRESH_PERIOD_SEC
+                        ],
+                        config_entry.options[CONF_DEVICE_LIST][sn][OPTS_POWER_STEP],
+                        config_entry.options[CONF_DEVICE_LIST][sn][
+                            OPTS_DIAGNOSTIC_MODE
+                        ],
+                    ),
+                    device_info[CONF_DEVICE_DISPLAY_NAME],
+                )
+
+        # remove options for the devices, because they are now part of the devices
+        new_options.pop(CONF_DEVICE_LIST)
+        # update the data with the class structured data
+        new_data[CONF_DEVICE_LIST] = new_devices
+        # update the entry in home assistant
+        updated = hass.config_entries.async_update_entry(
+            config_entry,
+            version=10,
+            data=new_data,
+            options=new_options,
         )
         _LOGGER.info("Config entries updated to version %d", config_entry.version)
 
@@ -183,7 +261,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
 
     await hass.async_add_executor_job(api_client.start)
     hass.data[ECOFLOW_DOMAIN][entry.entry_id] = api_client
-    await api_client.quota_all(None)
     await hass.config_entries.async_forward_entry_setups(entry, _PLATFORMS)
 
     await api_client.quota_all(None)
