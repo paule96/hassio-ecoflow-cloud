@@ -183,6 +183,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
 
     await hass.async_add_executor_job(api_client.start)
     hass.data[ECOFLOW_DOMAIN][entry.entry_id] = api_client
+    await api_client.quota_all(None)
     await hass.config_entries.async_forward_entry_setups(entry, _PLATFORMS)
 
     await api_client.quota_all(None)
