@@ -13,6 +13,10 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from homeassistant.util import dt
 
+from ..DeviceData import DeviceData
+
+from ..DeviceData import ChildDeviceData
+
 from .data_holder import EcoflowDataHolder
 from ..api import EcoflowApiClient
 from .. import DeviceData
@@ -85,17 +89,13 @@ class BaseDevice(ABC):
         self.power_step: int = device_data.options.power_step
         self.device_data: DeviceData = device_data
 
-    def configure(self, hass: HomeAssistant):
-        if self.device_data.parent is not None:
-            self.data = EcoflowDataHolder(
-                self.device_data.sn, self.device_data.options.diagnostic_mode
-            )
+    def configure(self, hass: HomeAssistant, refresh_period: int, diag: bool = False):
+        if isinstance(self.device_data, ChildDeviceData):
+            self.data = EcoflowDataHolder(self.device_data.sn, diag)
         else:
-            self.data = EcoflowDataHolder(
-                None, self.device_data.options.diagnostic_mode
-            )
+            self.data = EcoflowDataHolder(None, diag)
         self.coordinator = EcoflowDeviceUpdateCoordinator(
-            hass, self.data, self.device_data.options.refresh_period
+            hass, self.data, refresh_period
         )
 
     @staticmethod

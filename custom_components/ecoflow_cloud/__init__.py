@@ -7,10 +7,17 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 
+from custom_components.ecoflow_cloud.DeviceData import (
+    DeviceData,
+    ChildDeviceData,
+    DeviceDataImportFactory,
+)
+from custom_components.ecoflow_cloud.DeviceOptions import DeviceOptions
+
 _LOGGER = logging.getLogger(__name__)
 
 ECOFLOW_DOMAIN = "ecoflow_cloud"
-CONFIG_VERSION = 9
+CONFIG_VERSION = 8
 
 _PLATFORMS = {
     Platform.NUMBER,
@@ -39,6 +46,7 @@ CONF_ACCESS_KEY: Final = "access_key"
 CONF_SECRET_KEY: Final = "secret_key"
 CONF_GROUP: Final = "group"
 CONF_DEVICE_LIST: Final = "devices_list"
+CONF_LOAD_ALL_DEVICES: Final = "load_all_devices"
 CONF_ENTRY_ID: Final = "entry_id"
 
 CONF_SELECT_DEVICE_KEY: Final = "select_device"
@@ -54,23 +62,6 @@ OPTS_REFRESH_PERIOD_SEC: Final = "refresh_period_sec"
 DEFAULT_REFRESH_PERIOD_SEC: Final = 5
 
 
-@dataclasses.dataclass
-class DeviceOptions:
-    refresh_period: int
-    power_step: int
-    diagnostic_mode: bool
-
-
-@dataclasses.dataclass
-class DeviceData:
-    sn: str
-    name: str
-    device_type: str
-    options: DeviceOptions
-    display_name: str | None
-    parent: DeviceData | None
-
-
 async def async_migrate_entry(hass: HomeAssistant, config_entry: ConfigEntry):
     updated: bool = False
     if config_entry.version in (5, 6):
@@ -78,21 +69,17 @@ async def async_migrate_entry(hass: HomeAssistant, config_entry: ConfigEntry):
         new_options = dict(config_entry.options)
         new_devices = dict[str, DeviceData]()
         for sn, device_info in config_entry.data[CONF_DEVICE_LIST].items():
-            new_devices[sn] = {
-                CONF_DEVICE_NAME: device_info[CONF_DEVICE_NAME],
-                CONF_DEVICE_TYPE: device_info[CONF_DEVICE_TYPE],
-                "options": {
-                    OPTS_REFRESH_PERIOD_SEC: config_entry.options[CONF_DEVICE_LIST][sn][
-                        OPTS_REFRESH_PERIOD_SEC
-                    ],
-                    OPTS_POWER_STEP: config_entry.options[CONF_DEVICE_LIST][sn][
-                        OPTS_POWER_STEP
-                    ],
-                    OPTS_DIAGNOSTIC_MODE: config_entry.options[CONF_DEVICE_LIST][sn][
-                        OPTS_DIAGNOSTIC_MODE
-                    ],
-                },
-            }
+            new_devices[sn] = DeviceData(
+                sn,
+                device_info[CONF_DEVICE_NAME],
+                device_info[CONF_DEVICE_TYPE],
+                DeviceOptions(
+                    config_entry.options[CONF_DEVICE_LIST][sn][OPTS_REFRESH_PERIOD_SEC],
+                    config_entry.options[CONF_DEVICE_LIST][sn][OPTS_POWER_STEP],
+                    config_entry.options[CONF_DEVICE_LIST][sn][OPTS_DIAGNOSTIC_MODE],
+                ),
+                None,
+            )
 
         # remove options for the devices, because they are now part of the devices
         new_options.pop(CONF_DEVICE_LIST)
@@ -151,26 +138,10 @@ async def async_migrate_entry(hass: HomeAssistant, config_entry: ConfigEntry):
 
 
 def extract_devices(entry: ConfigEntry) -> dict[str, DeviceData]:
-    result = dict[str, DeviceData]()
-    for sn, data in entry.data[CONF_DEVICE_LIST].items():
-        result[sn] = DeviceData(
-            sn,
-            data[CONF_DEVICE_NAME],
-            data[CONF_DEVICE_TYPE],
-            DeviceOptions(
-                entry.options[CONF_DEVICE_LIST][sn][OPTS_REFRESH_PERIOD_SEC],
-                entry.options[CONF_DEVICE_LIST][sn][OPTS_POWER_STEP],
-                entry.options[CONF_DEVICE_LIST][sn][OPTS_DIAGNOSTIC_MODE],
-            ),
-            None,
-            None,
-        )
-
-    for sn, data in entry.data[CONF_DEVICE_LIST].items():
-        if CONF_PARENT_SN in data:
-            result[sn].parent = result[data[CONF_PARENT_SN]]
-
-    return result
+    result = entry.data[CONF_DEVICE_LIST]
+    if isinstance(next(iter(result.values())), (dict, list)):
+        return {sn: DeviceDataImportFactory.create(data) for sn, data in result.items()}
+    return entry.data[CONF_DEVICE_LIST]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
@@ -207,9 +178,35 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
 
     await api_client.login()
 
+    devices_list: dict[str, DeviceData] = {}
+
+    if CONF_LOAD_ALL_DEVICES not in entry.data or not entry.data[CONF_LOAD_ALL_DEVICES]:
+        devices_list.update(extract_devices(entry))
+    else:
+        try:
+            from .devices.registry import device_by_product
+
+            device_list = list(device_by_product.keys())
+            devices = await api_client.fetch_all_available_devices()
+            for device in devices:
+                if device.device_type in device_list:
+                    devices_list[device.sn] = DeviceData(
+                        device.sn,
+                        device.name,
+                        device.device_type,
+                        DeviceOptions(DEFAULT_REFRESH_PERIOD_SEC, -1, False),
+                        None,
+                    )
+        except Exception:  # pylint: disable=broad-except
+            _LOGGER.exception("Unexpected exception in fetch device action")
+
     for sn, device_data in devices_list.items():
         device = api_client.configure_device(device_data)
-        device.configure(hass)
+        device.configure(
+            hass,
+            device_data.options.refresh_period,
+            device_data.options.diagnostic_mode,
+        )
 
     await hass.async_add_executor_job(api_client.start)
     hass.data[ECOFLOW_DOMAIN][entry.entry_id] = api_client

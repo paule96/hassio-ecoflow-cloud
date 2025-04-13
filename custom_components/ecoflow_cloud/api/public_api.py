@@ -9,6 +9,7 @@ import aiohttp
 from . import EcoflowApiClient
 from .. import DeviceData
 from ..devices import DiagnosticDevice, EcoflowDeviceInfo
+from custom_components.ecoflow_cloud import ChildDeviceData, DeviceData
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -54,7 +55,7 @@ class EcoflowPublicApiClient(EcoflowApiClient):
         return result
 
     def configure_device(self, device_data: DeviceData):
-        if device_data.parent is not None:
+        if isinstance(device_data, ChildDeviceData):
             info = self.__create_device_info(
                 device_data.parent.sn, device_data.name, device_data.parent.device_type
             )

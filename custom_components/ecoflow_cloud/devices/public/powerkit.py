@@ -1,6 +1,6 @@
-from typing import Any, Callable
+from typing import Any, Callable, cast
 
-from ... import DeviceData
+from ...DeviceData import DeviceData, ChildDeviceData
 from ...api import EcoflowApiClient
 from ...entities import (
     BaseNumberEntity,
@@ -51,7 +51,7 @@ class PowerKit(BaseDevice):
         Variable contains a function to set the state of the DC switch of the DC distribution panel
         """
         if device_data.device_type != "PowerKit":
-            childData = device_data
+            childData: ChildDeviceData = cast(ChildDeviceData, device_data)
             if device_data.device_type.startswith("bp"):
                 device_data.display_name = (
                     f"PowerKit Battery ({childData.parent.sn}.{childData.sn})"
