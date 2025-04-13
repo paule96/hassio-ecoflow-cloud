@@ -107,33 +107,6 @@ async def async_migrate_entry(hass: HomeAssistant, config_entry: ConfigEntry):
         )
         _LOGGER.info("Config entries updated to version %d", config_entry.version)
 
-    if config_entry.version == 8:
-        # fix fields and revert options
-        new_data = dict(config_entry.data)
-        new_options = {CONF_DEVICE_LIST: {}}
-        new_data.pop("load_all_devices", None)
-
-        for sn, device_info in new_data[CONF_DEVICE_LIST].items():
-            if "name" in device_info:
-                new_data[CONF_DEVICE_LIST][sn][CONF_DEVICE_NAME] = new_data[
-                    CONF_DEVICE_LIST
-                ][sn].pop("name")
-                new_data[CONF_DEVICE_LIST][sn].pop("sn", None)
-
-            new_options[CONF_DEVICE_LIST][sn] = new_data[CONF_DEVICE_LIST][sn].pop(
-                "options"
-            )
-
-            if "refresh_period" in new_options[CONF_DEVICE_LIST][sn]:
-                new_options[CONF_DEVICE_LIST][sn][OPTS_REFRESH_PERIOD_SEC] = (
-                    new_options[CONF_DEVICE_LIST][sn].pop("refresh_period")
-                )
-
-        updated = hass.config_entries.async_update_entry(
-            config_entry, version=9, data=new_data, options=new_options
-        )
-        _LOGGER.info("Config entries updated to version %d", config_entry.version)
-
     return updated
 
 
