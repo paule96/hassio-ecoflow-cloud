@@ -3,7 +3,7 @@ import logging
 from copy import deepcopy
 from typing import Any, Dict
 
-from config.custom_components.ecoflow_cloud.api.public_api import EcoflowPublicApiClient
+from .api.public_api import EcoflowPublicApiClient
 import voluptuous as vol
 from homeassistant.config_entries import (
     ConfigEntry,
